@@ -42,7 +42,7 @@ class Dashboard extends StatelessWidget {
   }
 
   void _showContactsList(BuildContext context) {
-    FirebaseCrashlytics.instance.crash();
+    //FirebaseCrashlytics.instance.crash(); Força um crash no app ao clicar no botão
 
     Navigator.of(context).push(
       MaterialPageRoute(
