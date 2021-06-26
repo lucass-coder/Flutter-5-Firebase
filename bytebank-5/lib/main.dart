@@ -1,7 +1,15 @@
 import 'package:alura_crashlytics/screens/dashboard.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
-void main() {
+void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized(); //Avisa o Flutter
+  await Firebase.initializeApp(); //inicia o Firebase de forma assíncrona
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+  //Informa o Flutter que a parte de monitorar erro fica a cargo do Crashlytics
+
   runApp(BytebankApp());
 }
 
