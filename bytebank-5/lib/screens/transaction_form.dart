@@ -10,6 +10,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
 import 'package:uuid/uuid.dart';
+import 'package:giffy_dialog/giffy_dialog.dart';
 
 class TransactionForm extends StatefulWidget {
   final Contact contact;
@@ -187,15 +188,31 @@ class _TransactionFormState extends State<TransactionForm> {
     // final snackBar = SnackBar(content: Text(message));
     // _scaffoldKey.currentState.showSnackBar(snackBar);
 
-    showToast(message,gravity: Toast.BOTTOM);
-
     // showDialog(
     //     context: context,
     //     builder: (contextDialog) {
     //       return FailureDialog(message);
     //     });
+
+    // showToast(message,gravity: Toast.BOTTOM);
+    // void showToast(String msg, {int duration = 5, int gravity}) {
+    //   Toast.show(msg, context, duration: duration, gravity: gravity);
+    // }
+
+    showDialog(
+      context: context,builder: (_) => NetworkGiffyDialog(
+        image: Image.network("https://raw.githubusercontent.com/Shashank02051997/FancyGifDialog-Android/master/GIF's/gif14.gif"),
+        title: Text('OPS',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 22.0,
+                fontWeight: FontWeight.w600)),
+          description:Text(message,
+            textAlign: TextAlign.center,
+          ),
+          entryAnimation: EntryAnimation.TOP,
+          onOkButtonPressed: () {},
+        )
+    );
   }
-    void showToast(String msg, {int duration = 5, int gravity}) {
-      Toast.show(msg, context, duration: duration, gravity: gravity);
-    }
 }
